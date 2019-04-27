@@ -2,10 +2,10 @@
 - hosts: checkbox
   remote_user: ubuntu
   vars:
-        ansible_ssh_private_key_file: /home/ubuntu/DevOps.pem
+        ansible_ssh_private_key_file: /home/ubuntu/devops2.pem
         ansible_python_interpreter: /usr/bin/python3
   vars_files: 
-    - variables.yml 
+    - /home/ubuntu/variables.yml 
   connection: ssh
   environment:
       AWS_ACCESS_KEY_ID: ""
