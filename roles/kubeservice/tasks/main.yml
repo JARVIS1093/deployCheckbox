@@ -54,7 +54,7 @@
     delay: 50
 
   - name:  create a deplyment
-    command: kubectl run hello-world-markdown --replicas=3 --labels="run=load-balancer-example-markdown" --image=gautamworah96/markdown:v2 --port=8081
+    command: kubectl run hello-world-markdown --replicas=3 --labels="run=load-balancer-example-markdown" --image=gautamworah96/markdown:v3 --port=8081
     when: '"{{NAME}}" not in clusterExists.stdout'
 
   - name:  expose the deployment
