@@ -132,14 +132,14 @@
     register: forever_list
     changed_when: false
 
-  - name: "Start example Node.js app."
-    shell: PORT=3002 forever start /home/ubuntu/checkBoxCode/server-side/site/server.js 
-    when: "forever_list.stdout.find('/home/ubuntu/checkBoxCode/server-side/site/server.js') == -1"
+ # - name: "Start example Node.js app."
+  #  shell: PORT=3002 forever start /home/ubuntu/checkBoxCode/server-side/site/server.js 
+   # when: "forever_list.stdout.find('/home/ubuntu/checkBoxCode/server-side/site/server.js') == -1"
 
-  #- name: Start the checkbox code
-   # shell: nohup npm start &
-    #args:
-     # chdir: /home/ubuntu/checkBoxCode/server-side/site/
+  - name: Start the checkbox code
+    shell: nohup npm start &
+    args:
+      chdir: /home/ubuntu/checkBoxCode/server-side/site/
 
   - name: move nginx config file
     copy:
