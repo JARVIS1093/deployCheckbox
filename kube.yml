@@ -1,17 +1,19 @@
 ---
 - hosts: kube
+#  become: true
   remote_user: ubuntu 
   vars: 
     ansible_ssh_private_key_file: /home/ubuntu/devops2.pem
     ansible_python_interpreter: /usr/bin/python3 
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 #    host_key_checking: false
     NAME: kubeservice.k8s.local
   connection: ssh
   environment:
       NAME: kubeservice.k8s.local
       KOPS_STATE_STORE: s3://kube-service-store
-#      AWS_ACCESS_KEY_ID: AKIAIJND7JFDATN473NA
- #     AWS_SECRET_ACCESS_KEY: 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
+      AWS_ACCESS_KEY_ID: AKIAJ5RIYT4Q5BRUEZQA
+      AWS_SECRET_ACCESS_KEY: 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
       
   roles:
     - kubeservice

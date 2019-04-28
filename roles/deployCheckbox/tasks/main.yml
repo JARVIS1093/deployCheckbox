@@ -7,7 +7,7 @@
   #    var: external_url.externalIP
   - name: copy foo.conf to checkbox server 
     copy:
-       src: /home/ubuntu/Devops-Milestone3/foo.conf
+       src: /home/ubuntu/deployCheckbox/foo.conf
        dest: /home/ubuntu/foo.conf
   - name: Update and upgrade apt packages
     become: true
@@ -105,13 +105,13 @@
       password: "{{MONGO_PASSWORD}}"
       state: present
 
-  - copy: 
-      src: /home/ubuntu/checkBoxCode
+#  - copy: 
+ #     src: /home/ubuntu/checkBoxCode
+  #    dest: /home/ubuntu/checkBoxCode
+  - name: Checkout from git repo
+    git:
+      repo: "{{REPO}}"
       dest: /home/ubuntu/checkBoxCode
-  #- name: Checkout from git repo
-   # git:
-    #  repo: "{{REPO}}"
-     # dest: /home/ubuntu/checkBoxCode
 
   - name: Install packages based on package.json.
     npm:
