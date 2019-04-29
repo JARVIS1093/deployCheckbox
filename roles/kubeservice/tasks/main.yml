@@ -39,11 +39,11 @@
     changed_when: no
 
   - name:  kops create cluster
-    command: kops create cluster --zones us-east-1a --name=kubeservice.k8s.local --state=s3://kube-service-store --ssh-public-key /home/ubuntu/.ssh/id_rsa.pub
+    command: "kops create cluster --zones us-east-1a --name={{NAME}} --state={{KOPS_STATE_STORE}} --ssh-public-key /home/ubuntu/.ssh/id_rsa.pub"
     when: '"{{NAME}}" not in clusterExists.stdout'
     become: yes
   - name:  kops update cluster
-    command: kops update cluster kubeservice.k8s.local --yes 
+    command: "kops update cluster {{NAME}} --yes" 
     when: '"{{NAME}}" not in clusterExists.stdout'
 
   - name: check whether cluster is ready
@@ -52,7 +52,7 @@
     until: '"kubeservice.k8s.local is ready" in clusterOutput.stdout'       
     retries: 50
     delay: 50
-    when: '"{{NAME}}" not in clusterExists.stdout'
+    
 
   - name:  create a deplyment
     command: kubectl run hello-world-markdown --replicas=3 --labels="run=load-balancer-example-markdown" --image=gautamworah96/markdown:v3 --port=8081

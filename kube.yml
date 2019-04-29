@@ -12,8 +12,6 @@
   environment:
       NAME: kubeservice.k8s.local
       KOPS_STATE_STORE: s3://kube-service-store
-      AWS_ACCESS_KEY_ID: AKIAJ5RIYT4Q5BRUEZQA
-      AWS_SECRET_ACCESS_KEY: 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
       
   roles:
     - kubeservice
